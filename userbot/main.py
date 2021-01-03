@@ -28,17 +28,17 @@ from json import loads, JSONDecodeError
 import re
 import userbot.cmdhelp
 
-DIZCILIK_STR = [
-    "Çıkartmayı dızlıyorum...",
-    "Yaşasın dızcılık...",
-    "Bu çıkartmayı kendi paketime davet ediyorum...",
-    "Bunu dızlamam lazım...",
-    "Hey bu güzel bir çıkartma!\nHemen dızlıyorum..",
-    "Çıkartmanı dızlıyorum\nhahaha.",
-    "Hey şuraya bak. (☉｡☉)!→\nBen bunu dızlarken...",
-    "Güller kırmızı menekşeler mavi, bu çıkartmayı paketime dızlayarak havalı olacağım...",
-    "Çıkartma hapsediliyor...",
-    "Bay dızcı bu çıkartmayı dızlıyor... ",
+SEWING_STR = [
+    "I'm editing the sticker ...",
+    "Long live ordering ...",
+    "I invite this sticker to my package ...",
+    "I have to fix this ...",
+    "Hey, this is a nice sticker!
+    "I'm flattening your sticker \ nhahaha.",
+    "Hey look over there. (☉｡☉)! → \ n While I was editing this ...",
+    "Roses red violets blue, I'll be cool by putting this sticker on my pack ...",
+    "Sticker is imprisoned ...",
+    "Mister stunner sorting this sticker ..."
 ]
 
 AFKSTR = [
@@ -66,18 +66,18 @@ AFKSTR = [
     "Şu an burada değilim....\nama öyleysem ...\n\nbu harika olmaz mıydı?",
 ]
 
-UNAPPROVED_MSG = ("`Hey,` {mention}`! Bu bir bot. Endişelenme.\n\n`"
-                  "`Sahibim sana PM atma izni vermedi. `"
-                  "`Lütfen sahibimin aktif olmasını bekleyin, o genellikle PM'leri onaylar.\n\n`"
-                  "`Bildiğim kadarıyla o kafayı yemiş insanlara PM izni vermiyor.`")
+UNAPPROVED_MSG = ("`Hey,` {mention}`! This is Devil Userbot"
+                  "`My owner didn't give you permission to PM. `"
+                  "`Please wait for my owner to be active, he will usually confirm PMs.\n\n`"
+                  "`As far as I know My Master doesn't allow people to PM.`")
 
 DB = connect("learning-data-root.check")
 CURSOR = DB.cursor()
 CURSOR.execute("""SELECT * FROM BRAIN1""")
 ALL_ROWS = CURSOR.fetchall()
-INVALID_PH = '\nHATA: Girilen telefon numarası geçersiz' \
-             '\n  Ipucu: Ülke kodunu kullanarak numaranı gir' \
-             '\n       Telefon numaranızı tekrar kontrol edin'
+INVALID_PH = '\nHATA: The phone number entered is invalid' \
+             '\n  Ipucu:  Enter your number using your country code' \
+             '\n       Check your phone number again'
 
 for i in ALL_ROWS:
     BRAIN_CHECKER.append(i[0])
@@ -98,7 +98,7 @@ def extractCommands(file):
         dosyaAdi = file.replace('.py', '')
         CmdHelp = userbot.cmdhelp.CmdHelp(dosyaAdi, False)
 
-        # Komutları Alıyoruz #
+        # We Receive Commands, #
         for Command in Pattern:
             Command = Command[1]
             if Command == '' or len(Command) <= 1:
@@ -120,11 +120,11 @@ def extractCommands(file):
                             KomutStr = Command
                         Komutlar.append(KomutStr)
 
-            # AsenaPY
-            Asenapy = re.search('\"\"\"ASENAPY(.*)\"\"\"', FileRead, re.DOTALL)
-            if not Asenapy == None:
-                Asenapy = Asenapy.group(0)
-                for Satir in Asenapy.splitlines():
+            # DevilPY
+            Devilpy = re.search('\"\"\"DevilPY(.*)\"\"\"', FileRead, re.DOTALL)
+            if not Devilpy == None:
+                Devilpy = Devilpy.group(0)
+                for Satir in Devilpy.splitlines():
                     if (not '"""' in Satir) and (':' in Satir):
                         Satir = Satir.split(':')
                         Isim = Satir[0]
@@ -139,7 +139,7 @@ def extractCommands(file):
             for Komut in Komutlar:
                 # if re.search('\[(\w*)\]', Komut):
                     # Komut = re.sub('(?<=\[.)[A-Za-z0-9_]*\]', '', Komut).replace('[', '')
-                CmdHelp.add_command(Komut, None, 'Bu plugin dışarıdan yüklenmiştir. Herhangi bir açıklama tanımlanmamıştır.')
+                CmdHelp.add_command(Komut, None, 'This plugin has been installed externally. No description is defined.')
             CmdHelp.add()
 
 try:
@@ -149,34 +149,33 @@ try:
     if idim in asenabl:
         bot.disconnect()
 
-    # ChromeDriver'ı Ayarlayalım #
+    # Let's Set Up ChromeDriver #
     try:
         chromedriver_autoinstaller.install()
     except:
         pass
     
-    # Galeri için değerler
-    GALERI = {}
+    # Values ​​for the gallery
+    GALLERY = {}
 
-    # PLUGIN MESAJLARI AYARLIYORUZ
-    PLUGIN_MESAJLAR = {}
-    ORJ_PLUGIN_MESAJLAR = {"alive": "`Tanrı Türk'ü Korusun. 🐺 Asena çalışıyor.`", "afk": f"`{str(choice(AFKSTR))}`", "kickme": "`Güle Güle ben gidiyorum `🤠", "pm": UNAPPROVED_MSG, "dızcı": str(choice(DIZCILIK_STR)), "ban": "{mention}`, yasaklandı!`", "mute": "{mention}`, sessize alındı!`", "approve": "{mention}`, bana mesaj gönderebilirsin!`", "disapprove": "{mention}`, artık bana mesaj gönderemezsin!`", "block": "{mention}`, engellendin!`"}
+    # WE ADJUST THE PLUGIN MESSAGES
+    PLUGIN_MESSAGES = {"alive": "`Devil Zinda Hai. So Devil Userbot is working.`", "afk": f"`{str(choice(AFKSTR))}`", "kickme": "`Goodbye i am going to leave this chutiya group`🤠", "pm": UNAPPROVED_MSG, "stranger": str(choice(DIZCILIK_STR)), "ban": "{mention}`, prohibited! By Devil Userbot`", "mute": "{mention}`, eske Muh me lad diya abh nhi bolega!`", "approve": "{mention}`, you can send me a message bcuz I approve you!`", "disapprove": "{mention}`, you can no longer send me a message bcuz you is chutiya!`", "block": "{mention}`, you are blocked now gand marwao!`"}
 
-    PLUGIN_MESAJLAR_TURLER = ["alive", "afk", "kickme", "pm", "dızcı", "ban", "mute", "approve", "disapprove", "block"]
+    PLUGIN_MESSAGES_TOURS = ["alive", "afk", "kickme", "pm", "stranger", "ban", "mute", "approve", "disapprove", "block"]
     for mesaj in PLUGIN_MESAJLAR_TURLER:
         dmsj = MSJ_SQL.getir_mesaj(mesaj)
         if dmsj == False:
-            PLUGIN_MESAJLAR[mesaj] = ORJ_PLUGIN_MESAJLAR[mesaj]
+            PLUGIN_MESAJLAR[mesaj] = ORJ_PLUGIN_MESSAGES [message]
         else:
-            if dmsj.startswith("MEDYA_"):
-                medya = int(dmsj.split("MEDYA_")[1])
-                medya = bot.get_messages(PLUGIN_CHANNEL_ID, ids=medya)
+            if dmsj.startswith("MEDIA_"):
+                media = int(dmsj.split("MEDIA_")[1])
+                media = bot.get_messages(PLUGIN_CHANNEL_ID, ids=media)
 
-                PLUGIN_MESAJLAR[mesaj] = medya
+                PLUGIN_MESAJLAR[mesaj] = media
             else:
                 PLUGIN_MESAJLAR[mesaj] = dmsj
     if not PLUGIN_CHANNEL_ID == None:
-        LOGS.info("Pluginler Yükleniyor")
+        LOGS.info("Plugins Loading")
         try:
             KanalId = bot.get_entity(PLUGIN_CHANNEL_ID)
         except:
@@ -188,20 +187,20 @@ try:
                 Split = plugin.file.name.split('.')
 
                 if not os.path.exists("./userbot/modules/" + plugin.file.name):
-                    dosya = bot.download_media(plugin, "./userbot/modules/")
+                    file = bot.download_media(plugin, "./userbot/modules/")
                 else:
-                    LOGS.info("Bu Plugin Zaten Yüklü " + plugin.file.name)
+                    LOGS.info("This Plugin is Already Installed " + plugin.file.name)
                     extractCommands('./userbot/modules/' + plugin.file.name)
                     dosya = plugin.file.name
                     continue 
                 
                 try:
-                    spec = importlib.util.spec_from_file_location("userbot.modules." + Split[0], dosya)
+                    spec = importlib.util.spec_from_file_location("userbot.modules." + Split[0], file)
                     mod = importlib.util.module_from_spec(spec)
 
                     spec.loader.exec_module(mod)
                 except Exception as e:
-                    LOGS.info(f"`Yükleme başarısız! Plugin hatalı.\n\nHata: {e}`")
+                    LOGS.info(f"`Upload failed! Plugin error. \ n \ nError: {e}`")
 
                     try:
                         plugin.delete()
@@ -213,16 +212,16 @@ try:
                     continue
                 extractCommands('./userbot/modules/' + plugin.file.name)
     else:
-        bot.send_message("me", f"`Lütfen pluginlerin kalıcı olması için PLUGIN_CHANNEL_ID'i ayarlayın.`")
+        bot.send_message("me", f"`Please set PLUGIN_CHANNEL_ID for plugins to be permanent.`")
 except PhoneNumberInvalidError:
     print(INVALID_PH)
     exit(1)
 
-async def FotoDegistir (foto):
-    FOTOURL = GALERI_SQL.TUM_GALERI[foto].foto
-    r = requests.get(FOTOURL)
+async def Change Photo (Photo):
+    PHOTOURL = GALERI_SQL.TUM_GALERI[Photo].foto
+    r = requests.get(PHOTOURL)
 
-    with open(str(foto) + ".jpg", 'wb') as f:
+    with open(str(photo) + ".jpg", 'wb') as f:
         f.write(r.content)    
     file = await bot.upload_file(str(foto) + ".jpg")
     try:
@@ -236,9 +235,9 @@ async def FotoDegistir (foto):
 for module_name in ALL_MODULES:
     imported_module = import_module("userbot.modules." + module_name)
 
-LOGS.info("Botunuz çalışıyor! Herhangi bir sohbete .alive yazarak Test edin."
-          " Yardıma ihtiyacınız varsa, Destek grubumuza gelin t.me/AsenaSupport")
-LOGS.info(f"Bot sürümünüz: Asena {ASENA_VERSION}")
+LOGS.info("Your bot is running! To any chat .alive Test it by typing and jab work kiya toh naccho."
+          " If you need help, come to our Support group t.me/deviluserbot")
+LOGS.info(f"Bot your version: Devil {DEVIL_AS_VERSION}")
 
 """
 if len(argv) not in (1, 3, 4):
