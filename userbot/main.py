@@ -160,9 +160,9 @@ try:
 
     # PLUGIN MESAJLARI AYARLIYORUZ
     PLUGIN_MESAJLAR = {}
-    ORJ_PLUGIN_MESAJLAR = {"alive": "`Tanrı Türk'ü Korusun. 🐺 Asena çalışıyor.`", "afk": f"`{str(choice(AFKSTR))}`", "kickme": "`Güle Güle ben gidiyorum `🤠", "pm": UNAPPROVED_MSG, "dızcı": str(choice(DIZCILIK_STR)), "ban": "{mention}`, yasaklandı!`", "mute": "{mention}`, sessize alındı!`", "approve": "{mention}`, bana mesaj gönderebilirsin!`", "disapprove": "{mention}`, artık bana mesaj gönderemezsin!`", "block": "{mention}`, engellendin!`"}
+    ORJ_PLUGIN_MESAJLAR = {"alive": "Devil Zinda Hai so Devil bot is running.`", "afk": f"`{str(choice(AFKSTR))}`", "kickme": "`i am leaving this chutiya group`🤠", "pm": UNAPPROVED_MSG, "da": str(choice(DIZCILIK_STR)), "ban": "{mention}`, Prohibited by Devil Userbot Nd Abh ja ke Gand Mrwao!`", "mute": "{mention}`, eske muh me dal diya abh nhi bolega yeh chutiya!`", "approve": "{mention}`, you can send me messsage now!`", "disapprove": "{mention}`, Chutiya persons are not allowed to message here so jake gand mrwao!`", "block": "{mention}`, You are Block Bcuz u are Gay!`"}
 
-    PLUGIN_MESAJLAR_TURLER = ["alive", "afk", "kickme", "pm", "dızcı", "ban", "mute", "approve", "disapprove", "block"]
+    PLUGIN_MESAJLAR_TURLER = ["alive", "afk", "kickme", "pm", "da", "ban", "mute", "approve", "disapprove", "block"]
     for mesaj in PLUGIN_MESAJLAR_TURLER:
         dmsj = MSJ_SQL.getir_mesaj(mesaj)
         if dmsj == False:
